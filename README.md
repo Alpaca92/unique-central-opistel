@@ -1,120 +1,36 @@
-# 🏢 유니크 센트럴 오피스텔 입주민대표회의 (Unique Central Opistel)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-> **Next.js 16 + Tailwind CSS + shadcn/ui + Firebase + 카카오 로그인 기반의 모바일 퍼스트 입주민대표회의 공식 소통 포털**
+## Getting Started
 
-본 프로젝트는 불필요한 댓글 분쟁 없이 **공지사항 전달**, **매월 관리비 총괄표 및 세대별 부과 공식**, **입대의 운영회비 사용 내역(영수증 증빙)**을 입주민분들께 투명하고 정직하게 공개하기 위해 제작되었습니다.
+First, run the development server:
 
----
-
-## 🌟 주요 핵심 기능
-
-### 1. 🛗 공지사항 (Notices)
-- **승강기 부착물 원본 사진 뷰어**: 엘리베이터 내부에 부착된 안내문/공고 포스터를 터치 한 번으로 고화질 확대 열람 가능
-- **카테고리 필터**: `엘리베이터 부착물`, `입대의 의결사항`, `긴급 공지`, `시설/점검`
-- **상단 고정(Pin) & 긴급 뱃지**: 중요 일정 및 긴급 단수/청소 공지 상단 우선 노출
-- **댓글 기능 완전 배제**: 입주민 간 감정싸움 및 분쟁을 예방하고 공적인 정보 전달에만 집중
-- **입대의 관리자 모드**: 공지사항 등록, 수정, 삭제 지원
-
-### 2. 🧾 관리비 총괄표 (Maintenance Bills)
-- **매월 정산 총괄표 공개**: 단지 전체 관리비 부과 총액, 세대당 평균, 납부 마감일, 원본 문서 열람 지원
-- **📐 각 세대별 부과 방식 및 산출 공식 표기 (핵심)**:
-  - **일반 공용관리비**: 세대 계약면적(공급+공용) 비례 배분 공식 (`세대면적 × ㎡당 단가 1,450원`)
-  - **세대 전기료**: 한전 누진제 검침 단가 + 공용전기(승강기/로비) 균등 배분
-  - **세대 수도료**: 세대 급수 검침량(톤당 단가) + 공용수도 배분
-  - **장기수선충당금**: ㎡당 250원 정액 부과 (*소유자 법정 부담금 원칙 및 임차인 퇴거 시 정산 청구 안내 필독 배너*)
-- **💡 우리 집 관리비 계산기**: 내 세대의 전용/계약면적(㎡)을 입력하면 기본 공용관리비와 장충금이 실시간 자동 산출되는 인터랙티브 위젯 탑재
-
-### 3. 💰 운영회비 사용 내역 (Operating Funds)
-- **실시간 통장 잔고 및 수입/지출 대시보드**: 입대의 전용 법인계좌 실시간 잔액 표시
-- **카드 영수증/세금계산서 증빙 첨부**: 모든 지출 건에 대해 영수증 사진 팝업 확인 가능
-- **월별/카테고리별 필터**: 회의비, 소모품/게시판 교체비, 전문가 법률 자문료, 명절 격려품 등
-- **관리자 내역 작성**: 영수증 이미지와 상세 지출 사유를 포함한 신규 거래 등록
-
-### 4. 💬 FAQ & 생활 안내
-- **카카오톡 단톡방(공식 오픈채팅방) 링크**: 단톡방 바로가기 버튼 및 참여 비밀번호(`1004`) 원클릭 복사
-- **🚗 월 방문 차량 무료 주차 안내**:
-  - 세대당 매월 1일 **방문 무료 주차 60시간** 자동 충전
-  - 방문차량 번호 등록 웹사이트 바로가기 링크
-  - 2번째 정기차량 등록 비용 안내
-- **🏢 관리사무소 & 24시간 방재실/경비실 직통 전화번호** 원클릭 복사
-- **♻️ 쓰레기 분리수거 및 반려견 승강기 탑승 에티켓**
-
----
-
-## 🔒 카카오톡 로그인 & 단톡방 참여자 한정 가입 구현 방식
-
-### ❓ 질문: "특정 단톡방에 참여한 인원만 가입이 가능한가요?"
-
-> **기술적 분석 및 표준 해결책**:
-> 1. **카카오 공식 정책상 한계**: 카카오 오픈 API(Kakao SDK / REST API)는 개인정보 및 보안 정책상 일반 사용자가 특정 단톡방이나 오픈채팅방에 참여 중인지 여부를 직접 조회하는 API를 제공하지 않습니다. (오픈채팅은 카카오 계정 인증과 분리된 독립 익명 세션입니다.)
-> 2. **실무 최고 수준의 표준 해결책 (본 프로젝트에 탑재)**:
->    - **단톡방 공지 인증코드 (Secret Passcode) 방식**:
->      1. 사용자가 **카카오톡 간편 로그인**을 진행합니다.
->      2. 로그인 직후 **[단톡방 입주민 인증 모달]**이 자동으로 열립니다.
->      3. 단톡방 상단 공지사항에만 게시된 **가입 인증코드(`UNIQUE2026`)**와 **동/호수**, **거주 형태(소유자/임차인)**를 입력해야만 정회원으로 승인됩니다.
->      4. 코드가 틀리거나 미인증된 사용자는 비입주민 상태로 남아 주요 권한이 제한됩니다.
->    - 관리자는 FAQ 탭에서 단톡방 가입 인증코드를 주기적으로 간편하게 변경할 수 있습니다.
-
----
-
-## 📱 Mobile-First UI (데스크톱 최적화 레이아웃)
-
-- **스마트폰 접속 시**: 화면 전체에 꽉 차는 네이티브 앱 형태로 동작합니다.
-- **PC/태블릿 접속 시**:
-  - 중앙에 스마트폰 비율(`max-w-md`)의 모바일 디바이스 프레임이 렌더링됩니다.
-  - 양옆 배경(화이트/소프트 슬레이트 그레이)에는 **오피스텔 엠블럼, 입대의 슬로건, 단톡방 빠른 코드 안내, 데스크톱 빠른 가이드** 위젯이 정갈하게 배치되어 전문 앱 뷰어 느낌을 완성합니다.
-
----
-
-## 🛠️ 기술 스택
-
-- **Framework**: Next.js 16 (App Router, Turbopack)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4, shadcn/ui 컴포넌트 시스템, Lucide Icons
-- **Auth**: Kakao SDK 연동 + 테스트용 1초 간편 로그인 모드 내장
-- **Database**:
-  - **Firebase Firestore** 연동 지원 (`.env.local` 설정 시)
-  - Firebase 미설정 상태에서도 브라우저 **LocalStorage**로 실시간 추가/수정/삭제 영속 작동
-
----
-
-## 🚀 시작하기
-
-### 1. 개발 서버 실행
-\`\`\`bash
-cd /Users/home/projects/unique-central-opistel
+```bash
 npm run dev
-\`\`\`
-브라우저에서 `http://localhost:3000`으로 접속합니다.
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-### 2. 프로덕션 빌드 & 실행
-\`\`\`bash
-npm run build
-npm run start
-\`\`\`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 3. 환경변수 설정 (`.env.local`)
-`.env.example` 파일을 복사하여 `.env.local`을 생성하고 키를 입력할 수 있습니다:
-\`\`\`env
-# 카카오 디벨로퍼스 JavaScript 키 (https://developers.kakao.com)
-NEXT_PUBLIC_KAKAO_JS_KEY=your_kakao_javascript_key
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-# 단톡방 입주민 인증 시크릿 암호 (기본값: UNIQUE2026)
-NEXT_PUBLIC_GROUP_PASSCODE=UNIQUE2026
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-# Firebase Firestore 설정 (선택 사항, 클라우드 DB 연동 시)
-NEXT_PUBLIC_FIREBASE_API_KEY=...
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
-\`\`\`
-*(※ 키를 입력하지 않아도 내장된 데모 데이터와 모의 로그인 기능으로 모든 기능을 즉시 100% 테스트할 수 있습니다.)*
+## Learn More
 
----
+To learn more about Next.js, take a look at the following resources:
 
-## 👑 관리자 모드 체험 안내
-- 상단 헤더 우측의 **[입주민 / 관리자(ON)]** 토글 버튼을 누르면 즉시 관리자 모드로 전환됩니다.
-- 관리자 모드에서는:
-  - 공지사항 상단 **[+ 공지 등록]** 및 각 공지 수정/삭제
-  - 관리비 총괄표 상단 **[+ 총괄표 등록]**
-  - 운영회비 상단 **[+ 내역 작성]** 및 영수증 등록
-  - FAQ 상단 **[단톡방 암호 관리]** (가입 인증 시크릿 코드 변경)
-  기능이 활성화됩니다.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
