@@ -5,28 +5,28 @@ import { Building2, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 export function MobileContainer({ children }: { children: React.ReactNode }) {
-  const { user, isAdmin, groupPasscode } = useAuth();
+  const { groupPasscode } = useAuth();
 
   return (
-    <div className="min-h-screen w-full bg-slate-100 flex justify-center items-start lg:py-6">
+    <div className="min-h-screen w-full bg-background flex justify-center items-start lg:py-6">
       {/* PC 전용 좌측 사이드바 배너 (PC에서만 표시) */}
-      <aside className="hidden xl:flex flex-col w-80 p-6 mr-8 sticky top-6 bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200 shadow-sm space-y-6">
+      <aside className="hidden xl:flex flex-col w-80 p-6 mr-8 sticky top-6 bg-card/80 backdrop-blur-md rounded-3xl border border-border shadow-sm space-y-6">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 rounded-2xl bg-blue-900 text-white flex items-center justify-center shadow-md">
+          <div className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center shadow-md">
             <Building2 className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-lg font-extrabold text-slate-900 tracking-tight">유니크 센트럴</h1>
-            <p className="text-xs text-blue-900 font-semibold">입주민대표회의 공식 포털</p>
+            <h1 className="text-lg font-extrabold text-foreground tracking-tight">유니크 센트럴</h1>
+            <p className="text-xs text-primary font-semibold">입주민대표회의 공식 포털</p>
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100/80 space-y-2 text-xs leading-relaxed text-slate-700">
-          <div className="flex items-center font-bold text-blue-900 space-x-1.5">
-            <ShieldCheck className="w-4 h-4 text-blue-600" />
+        <div className="p-4 rounded-2xl bg-primary/5 border border-primary/10 space-y-2 text-xs leading-relaxed text-foreground">
+          <div className="flex items-center font-bold text-primary space-x-1.5">
+            <ShieldCheck className="w-4 h-4 text-accent" />
             <span>투명한 공지 & 회비 공개</span>
           </div>
-          <p>
+          <p className="text-muted-foreground">
             댓글 분쟁 없이 공지사항 전달과 관리비·운영회비의 투명한 집행 내역을 입주민분들께 정직하게 보고합니다.
           </p>
         </div>
@@ -45,39 +45,39 @@ export function MobileContainer({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className="pt-2 border-t border-slate-100 text-[11px] text-slate-400 text-center">
+        <div className="pt-2 border-t border-border text-[11px] text-muted-foreground text-center">
           📱 본 페이지는 모바일 기기에 최적화되어 있습니다.
         </div>
       </aside>
 
       {/* 중앙 모바일 화면 컨테이너 (스마트폰 크기 고정, 모바일에서는 100% 핏) */}
-      <main className="w-full max-w-md min-h-screen lg:min-h-[920px] lg:max-h-[95vh] bg-white text-slate-900 shadow-2xl flex flex-col relative lg:rounded-[36px] overflow-hidden border border-slate-200/70">
+      <main className="w-full max-w-md min-h-screen lg:min-h-[920px] lg:max-h-[95vh] bg-card text-card-foreground shadow-2xl flex flex-col relative lg:rounded-[36px] overflow-hidden border border-border">
         {children}
       </main>
 
       {/* PC 전용 우측 사이드바 팁 (PC에서만 표시) */}
-      <aside className="hidden xl:flex flex-col w-80 p-6 ml-8 sticky top-6 bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200 shadow-sm space-y-4">
-        <div className="flex items-center space-x-2 text-sm font-bold text-slate-800">
-          <Sparkles className="w-4 h-4 text-blue-600" />
-          <span>빠른 테스트 가이드</span>
+      <aside className="hidden xl:flex flex-col w-80 p-6 ml-8 sticky top-6 bg-card/80 backdrop-blur-md rounded-3xl border border-border shadow-sm space-y-4">
+        <div className="flex items-center space-x-2 text-sm font-bold text-foreground">
+          <Sparkles className="w-4 h-4 text-primary" />
+          <span>Next.js App Router 안내</span>
         </div>
 
-        <div className="space-y-3 text-xs text-slate-600">
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <p className="font-semibold text-slate-900 mb-1">1. 카카오 로그인 지원</p>
-            <p>상단 로그인 버튼을 누르면 카카오 로그인 및 1초 데모 로그인이 가능합니다.</p>
+        <div className="space-y-3 text-xs text-muted-foreground">
+          <div className="p-3 bg-secondary rounded-xl border border-border">
+            <p className="font-semibold text-foreground mb-1">1. SSR & 고유 URL 라우팅</p>
+            <p>공지사항, 관리비, 회비, FAQ가 각각 고유 URL(`/notices`, `/maintenance`, `/funds`, `/faq`)을 가지며 서버 렌더링(SSR)됩니다.</p>
           </div>
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <p className="font-semibold text-slate-900 mb-1">2. 관리자 모드 체험</p>
-            <p>상단의 <span className="font-semibold text-blue-700">관리자 전환</span> 버튼을 누르면 공지 등록, 관리비 총괄표 추가, 운영회비 영수증 등록이 활성화됩니다.</p>
+          <div className="p-3 bg-secondary rounded-xl border border-border">
+            <p className="font-semibold text-foreground mb-1">2. 개별 공지 딥링크 공유</p>
+            <p>공지사항을 클릭하면 `/notices/[id]` 고유 주소가 생성되어 카카오톡 단톡방에 직접 링크를 공유할 수 있습니다.</p>
           </div>
-          <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-            <p className="font-semibold text-slate-900 mb-1">3. 관리비 부과 공식</p>
-            <p>관리비 탭에서 각 세대별 계약면적 비례 부과식 및 전기·수도 산정식을 바로 확인하실 수 있습니다.</p>
+          <div className="p-3 bg-secondary rounded-xl border border-border">
+            <p className="font-semibold text-foreground mb-1">3. 카카오 로그인 & 관리자 모드</p>
+            <p>단톡방 시크릿 코드 인증 및 상단 토글을 통한 입대의 관리자 모드 체험이 가능합니다.</p>
           </div>
         </div>
 
-        <div className="text-[11px] text-slate-400 text-center mt-auto">
+        <div className="text-[11px] text-muted-foreground text-center mt-auto">
           Unique Central Opistel Council &copy; 2026
         </div>
       </aside>

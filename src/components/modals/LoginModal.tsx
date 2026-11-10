@@ -18,7 +18,7 @@ export function LoginModal() {
   return (
     <Dialog open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen}>
       <DialogHeader>
-        <div className="w-12 h-12 rounded-2xl bg-[#FEE500] text-[#191919] flex items-center justify-center mx-auto mb-2 shadow-sm">
+        <div className="w-12 h-12 rounded-2xl bg-kakao text-kakao-foreground flex items-center justify-center mx-auto mb-2 shadow-sm">
           <MessageCircle className="w-7 h-7 fill-current" />
         </div>
         <DialogTitle className="text-center text-xl font-extrabold text-slate-900">

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Building, ShieldCheck, LogIn, LogOut, UserCheck, ShieldAlert, KeyRound } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/Button";
@@ -18,23 +19,23 @@ export function Header() {
   } = useAuth();
 
   return (
-    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-100 px-4 py-3 shrink-0">
+    <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b border-border px-4 py-3 shrink-0">
       <div className="flex items-center justify-between">
         {/* 로고 & 타이틀 */}
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-sm">
+        <Link href="/notices" className="flex items-center space-x-2 group">
+          <div className="w-8 h-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shadow-sm group-hover:scale-105 transition">
             <Building className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center space-x-1.5">
-              <span className="text-sm font-extrabold text-slate-900 tracking-tight">유니크 센트럴</span>
-              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-blue-50 text-blue-800">
+              <span className="text-sm font-extrabold text-card-foreground tracking-tight">유니크 센트럴</span>
+              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-primary/10 text-primary">
                 입대의
               </span>
             </div>
-            <p className="text-[10px] text-slate-400">입주민대표회의 공식</p>
+            <p className="text-[10px] text-muted-foreground">입주민대표회의 공식</p>
           </div>
-        </div>
+        </Link>
 
         {/* 사용자 상태 / 로그인 버튼 */}
         <div className="flex items-center space-x-1.5">
@@ -43,17 +44,17 @@ export function Header() {
               {/* 관리자 / 입주민 전환 버튼 */}
               <button
                 onClick={toggleAdminRole}
-                className="text-[10px] px-2 py-1 rounded-lg border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition flex items-center space-x-1"
+                className="text-[10px] px-2 py-1 rounded-lg border border-border bg-secondary text-secondary-foreground hover:bg-secondary/80 transition flex items-center space-x-1"
                 title="관리자/입주민 모드 전환"
               >
                 {isAdmin ? (
                   <>
-                    <ShieldCheck className="w-3 h-3 text-blue-600" />
-                    <span className="font-bold text-blue-900">관리자(ON)</span>
+                    <ShieldCheck className="w-3 h-3 text-primary" />
+                    <span className="font-bold text-primary">관리자(ON)</span>
                   </>
                 ) : (
                   <>
-                    <UserCheck className="w-3 h-3 text-slate-500" />
+                    <UserCheck className="w-3 h-3 text-muted-foreground" />
                     <span>입주민</span>
                   </>
                 )}
@@ -77,7 +78,7 @@ export function Header() {
               {/* 로그아웃 버튼 */}
               <button
                 onClick={logout}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+                className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition"
                 title="로그아웃"
               >
                 <LogOut className="w-4 h-4" />

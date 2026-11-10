@@ -5,21 +5,15 @@ import {
   HelpCircle,
   MessageCircle,
   Car,
-  PhoneCall,
-  Trash2,
   Copy,
   Check,
   ExternalLink,
   ChevronDown,
   ChevronUp,
   KeyRound,
-  ShieldCheck,
-  Plus,
-  Edit3,
 } from "lucide-react";
 import { useData } from "@/context/DataContext";
 import { useAuth } from "@/context/AuthContext";
-import { FAQItem, FAQCategory } from "@/types";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -27,7 +21,7 @@ import { Input } from "@/components/ui/Input";
 import { Dialog, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/Dialog";
 
 export function FAQView() {
-  const { faqs, addFAQ, deleteFAQ } = useData();
+  const { faqs } = useData();
   const { isAdmin, groupPasscode, updateGroupPasscode } = useAuth();
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -69,11 +63,11 @@ export function FAQView() {
       {/* 상단 타이틀 */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-extrabold text-slate-900 tracking-tight flex items-center space-x-1.5">
-            <HelpCircle className="w-5 h-5 text-blue-900" />
+          <h2 className="text-lg font-extrabold text-foreground tracking-tight flex items-center space-x-1.5">
+            <HelpCircle className="w-5 h-5 text-primary" />
             <span>입주민 FAQ & 생활안내</span>
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             단톡방 링크, 월 주차 시간 및 긴급 연락처
           </p>
         </div>
@@ -94,8 +88,8 @@ export function FAQView() {
         )}
       </div>
 
-      {/* 🌟 1. 카카오톡 단톡방 특급 안내 배너 (핵심 요구사항) */}
-      <div className="rounded-2xl bg-gradient-to-r from-[#FEE500] to-[#FDD835] p-4 text-[#191919] shadow-md space-y-3">
+      {/* 🌟 1. 카카오톡 단톡방 특급 안내 배너 (시맨틱 kakao 변수 사용) */}
+      <div className="rounded-2xl bg-kakao p-4 text-kakao-foreground shadow-md space-y-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-9 h-9 rounded-xl bg-black/10 flex items-center justify-center">
@@ -142,43 +136,43 @@ export function FAQView() {
           href="https://open.kakao.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full py-2.5 px-4 rounded-xl bg-[#191919] text-white text-xs font-bold flex items-center justify-center space-x-1.5 shadow-sm hover:bg-black transition text-center"
+          className="w-full py-2.5 px-4 rounded-xl bg-black text-white text-xs font-bold flex items-center justify-center space-x-1.5 shadow-sm hover:opacity-90 transition text-center"
         >
           <span>카카오톡 단톡방 바로 입장하기</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
       </div>
 
-      {/* 🌟 2. 월 주차 시간 퀵 카드 (핵심 요구사항) */}
-      <Card className="border-blue-200 bg-blue-50/50">
+      {/* 🌟 2. 월 주차 시간 퀵 카드 */}
+      <Card className="border-primary/20 bg-primary/5">
         <CardHeader className="p-4 pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xs font-bold text-blue-950 flex items-center space-x-1.5">
-              <Car className="w-4 h-4 text-blue-700" />
+            <CardTitle className="text-xs font-bold text-foreground flex items-center space-x-1.5">
+              <Car className="w-4 h-4 text-primary" />
               <span>월 방문 차량 무료 주차 안내</span>
             </CardTitle>
             <Badge variant="default" className="text-[10px]">매월 1일 충전</Badge>
           </div>
         </CardHeader>
         <CardContent className="p-4 pt-1 space-y-2 text-xs">
-          <div className="flex justify-between items-center py-1 border-b border-blue-100">
-            <span className="text-slate-600">세대당 기본 무료 등록</span>
-            <span className="font-extrabold text-blue-950">정기차량 1대</span>
+          <div className="flex justify-between items-center py-1 border-b border-border">
+            <span className="text-muted-foreground">세대당 기본 무료 등록</span>
+            <span className="font-extrabold text-foreground">정기차량 1대</span>
           </div>
-          <div className="flex justify-between items-center py-1 border-b border-blue-100">
-            <span className="text-slate-600">월 방문차량 무료 지원 시간</span>
-            <span className="font-extrabold text-blue-950 text-sm">월 60시간 무료</span>
+          <div className="flex justify-between items-center py-1 border-b border-border">
+            <span className="text-muted-foreground">월 방문차량 무료 지원 시간</span>
+            <span className="font-extrabold text-primary text-sm">월 60시간 무료</span>
           </div>
           <div className="flex justify-between items-center py-1">
-            <span className="text-slate-600">초과 시 요금</span>
-            <span className="font-semibold text-slate-700">10분당 500원</span>
+            <span className="text-muted-foreground">초과 시 요금</span>
+            <span className="font-semibold text-foreground">10분당 500원</span>
           </div>
 
           <a
             href="https://parking.example.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full mt-2 py-2 px-3 rounded-xl bg-blue-900 text-white text-[11px] font-bold flex items-center justify-center space-x-1 hover:bg-blue-800 transition shadow-sm"
+            className="w-full mt-2 py-2 px-3 rounded-xl bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center space-x-1 hover:bg-primary-hover transition shadow-sm"
           >
             <span>방문차량 번호 등록 바로가기</span>
             <ExternalLink className="w-3 h-3" />
@@ -194,8 +188,8 @@ export function FAQView() {
             onClick={() => setSelectedCategory(c.id)}
             className={`whitespace-nowrap px-3 py-1.5 rounded-full font-medium transition-all text-xs ${
               selectedCategory === c.id
-                ? "bg-blue-900 text-white shadow-sm font-bold"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                ? "bg-primary text-primary-foreground shadow-sm font-bold"
+                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
             }`}
           >
             {c.label}
@@ -210,7 +204,7 @@ export function FAQView() {
           return (
             <Card
               key={item.id}
-              className={`border-slate-200 transition-all ${
+              className={`border-border transition-all ${
                 item.highlight ? "border-amber-300/80 bg-amber-50/20" : ""
               }`}
             >
@@ -219,33 +213,33 @@ export function FAQView() {
                 className="p-3.5 flex items-start justify-between cursor-pointer select-none"
               >
                 <div className="flex items-start space-x-2.5 pr-2">
-                  <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-900 text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5">
                     Q
                   </span>
-                  <p className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+                  <p className="text-xs sm:text-sm font-bold text-card-foreground leading-snug">
                     {item.question}
                   </p>
                 </div>
-                <div className="text-slate-400 shrink-0 mt-0.5">
+                <div className="text-muted-foreground shrink-0 mt-0.5">
                   {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </div>
               </div>
 
               {isOpen && (
-                <div className="px-3.5 pb-3.5 pt-0 border-t border-slate-100 text-xs text-slate-700 leading-relaxed space-y-2.5">
+                <div className="px-3.5 pb-3.5 pt-0 border-t border-border text-xs text-foreground leading-relaxed space-y-2.5">
                   <p className="whitespace-pre-line pt-2 text-[11px] sm:text-xs">
                     {item.answer}
                   </p>
 
-                  {/* 복사 버튼이 있는 경우 (전화번호, 계좌번호, 코드 등) */}
+                  {/* 복사 버튼이 있는 경우 */}
                   {item.copyValue && (
-                    <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100">
-                      <span className="font-mono text-xs font-bold text-blue-900">
+                    <div className="flex items-center justify-between p-2 rounded-xl bg-secondary border border-border">
+                      <span className="font-mono text-xs font-bold text-primary">
                         {item.copyValue}
                       </span>
                       <button
                         onClick={() => handleCopy(item.copyValue || "", item.id)}
-                        className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[10px] font-bold text-slate-700 flex items-center space-x-1 hover:bg-slate-50"
+                        className="px-2.5 py-1 rounded-lg bg-card border border-border text-[10px] font-bold text-foreground flex items-center space-x-1 hover:bg-secondary"
                       >
                         {copiedKey === item.id ? (
                           <>
@@ -254,7 +248,7 @@ export function FAQView() {
                           </>
                         ) : (
                           <>
-                            <Copy className="w-3 h-3 text-slate-500" />
+                            <Copy className="w-3 h-3 text-muted-foreground" />
                             <span>복사하기</span>
                           </>
                         )}
@@ -268,7 +262,7 @@ export function FAQView() {
                       href={item.linkUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1 text-xs font-bold text-blue-700 hover:underline"
+                      className="inline-flex items-center space-x-1 text-xs font-bold text-primary hover:underline"
                     >
                       <span>{item.linkText || "관련 페이지 바로가기"}</span>
                       <ExternalLink className="w-3 h-3" />
@@ -284,11 +278,11 @@ export function FAQView() {
       {/* 관리자 단톡방 가입 인증코드 관리 모달 */}
       <Dialog open={isPasscodeModalOpen} onOpenChange={setIsPasscodeModalOpen}>
         <DialogHeader>
-          <DialogTitle className="text-base font-bold text-slate-900 flex items-center space-x-1.5">
+          <DialogTitle className="text-base font-bold text-card-foreground flex items-center space-x-1.5">
             <KeyRound className="w-4 h-4 text-amber-600" />
             <span>단톡방 가입 인증코드 관리</span>
           </DialogTitle>
-          <DialogDescription className="text-xs text-slate-500">
+          <DialogDescription className="text-xs text-muted-foreground">
             단톡방 공지사항에 기재할 홈페이지 회원가입 인증 암호를 설정합니다.
           </DialogDescription>
         </DialogHeader>
@@ -303,7 +297,7 @@ export function FAQView() {
           className="space-y-3 text-xs"
         >
           <div>
-            <label className="block font-bold text-slate-700 mb-1">
+            <label className="block font-bold text-foreground mb-1">
               새 단톡방 가입 인증코드
             </label>
             <Input
@@ -313,7 +307,7 @@ export function FAQView() {
               className="font-mono tracking-widest uppercase font-bold"
               required
             />
-            <p className="text-[10px] text-slate-400 mt-1">
+            <p className="text-[10px] text-muted-foreground mt-1">
               * 변경 후 카카오톡 단톡방 상단 공지에도 동일한 암호를 공지해 주세요.
             </p>
           </div>
@@ -327,7 +321,7 @@ export function FAQView() {
             >
               취소
             </Button>
-            <Button type="submit" size="sm" className="bg-blue-900 font-bold">
+            <Button type="submit" size="sm" className="font-bold">
               암호 변경 저장
             </Button>
           </div>

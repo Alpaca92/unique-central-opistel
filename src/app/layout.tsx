@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { AppLayout } from "@/components/layout/AppLayout";
 
 export const metadata: Metadata = {
   title: "유니크 센트럴 오피스텔 입주민대표회의",
@@ -31,8 +32,8 @@ export default function RootLayout({
           defer
         />
       </head>
-      <body className="min-h-full flex flex-col bg-slate-100 text-slate-900">
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <AppLayout>{children}</AppLayout>
       </body>
     </html>
   );

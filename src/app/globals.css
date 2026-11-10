@@ -7,7 +7,8 @@
   --card: #ffffff;
   --card-foreground: #0f172a;
 
-  --primary: #1e3a8a; /* 품격있는 네이비 블루 */
+  --primary: #1e3a8a; /* 오피스텔 공식 품격있는 네이비 블루 */
+  --primary-hover: #172554;
   --primary-foreground: #ffffff;
 
   --secondary: #f1f5f9;
@@ -28,20 +29,47 @@
 
   --radius: 0.75rem;
 
-  /* Kakao Brand Color */
+  /* Kakao 공식 브랜드 컬러 토큰 */
   --kakao: #fee500;
+  --kakao-hover: #fdd835;
   --kakao-foreground: #191919;
 }
 
+/* Tailwind v4 시맨틱 컬러 토큰 매핑 */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-kakao: var(--kakao);
+  --color-kakao-hover: var(--kakao-hover);
+  --color-kakao-foreground: var(--kakao-foreground);
+  --radius-xl: var(--radius);
+}
+
 body {
-  background-color: #f1f5f9;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar hide helper for clean mobile tabs */
+/* 모바일 탭 스크롤바 숨김 유틸리티 */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

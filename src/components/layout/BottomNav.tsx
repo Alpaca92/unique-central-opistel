@@ -1,72 +1,74 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Megaphone, ReceiptText, Wallet, HelpCircle } from "lucide-react";
-import { ActiveTab } from "@/types";
 import { cn } from "@/lib/utils";
 
-interface BottomNavProps {
-  activeTab: ActiveTab;
-  onTabChange: (tab: ActiveTab) => void;
-}
+export function BottomNav() {
+  const pathname = usePathname();
 
-export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   const tabs = [
     {
-      id: "notices" as ActiveTab,
+      href: "/notices",
       label: "공지사항",
       icon: Megaphone,
+      isActive: pathname.startsWith("/notices"),
     },
     {
-      id: "maintenance" as ActiveTab,
+      href: "/maintenance",
       label: "관리비",
       icon: ReceiptText,
+      isActive: pathname.startsWith("/maintenance"),
     },
     {
-      id: "funds" as ActiveTab,
+      href: "/funds",
       label: "운영회비",
       icon: Wallet,
+      isActive: pathname.startsWith("/funds"),
     },
     {
-      id: "faq" as ActiveTab,
+      href: "/faq",
       label: "FAQ",
       icon: HelpCircle,
+      isActive: pathname.startsWith("/faq"),
     },
   ];
 
   return (
-    <nav className="sticky bottom-0 z-30 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-2 py-1.5 shrink-0">
+    <nav className="sticky bottom-0 z-30 bg-card/95 backdrop-blur-md border-t border-border px-2 py-1.5 shrink-0">
       <div className="grid grid-cols-4 gap-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
-          const isActive = activeTab === tab.id;
+          const isActive = tab.isActive;
           return (
-            <button
-              key={tab.id}
-              onClick={() => onTabChange(tab.id)}
+            <Link
+              key={tab.href}
+              href={tab.href}
               className={cn(
                 "flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all relative",
                 isActive
-                  ? "text-blue-900 font-bold"
-                  : "text-slate-400 hover:text-slate-600 font-medium"
+                  ? "text-primary font-bold"
+                  : "text-muted-foreground hover:text-foreground font-medium"
               )}
             >
               <div className="relative">
                 <Icon
                   className={cn(
                     "w-5 h-5 transition-transform",
-                    isActive ? "scale-110 text-blue-900" : "text-slate-400"
+                    isActive ? "scale-110 text-primary" : "text-muted-foreground"
                   )}
                 />
                 {isActive && (
-                  <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-blue-600 rounded-full animate-ping" />
+                  <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-primary rounded-full animate-ping" />
                 )}
               </div>
               <span className="text-[11px] mt-1 tracking-tight">{tab.label}</span>
               {isActive && (
-                <div className="w-6 h-0.5 bg-blue-900 rounded-full mt-0.5" />
+                <div className="w-6 h-0.5 bg-primary rounded-full mt-0.5" />
               )}
-            </button>
+            </Link>
           );
         })}
       </div>
